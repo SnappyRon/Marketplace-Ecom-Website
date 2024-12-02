@@ -11,9 +11,7 @@ use App\Http\Controllers\ProfileController;
 require __DIR__.'/auth.php';
 
 // Home page route (serves as the dashboard)
-Route::get('/', [HomeController::class, 'index'])
-    ->middleware('auth')
-    ->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Shop routes
 Route::get('/shop', [ShopController::class, 'index'])->name('shop');
