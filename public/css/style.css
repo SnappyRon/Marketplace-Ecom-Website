@@ -620,4 +620,122 @@ section#product1 a {
     background-color: #218838;
 }
 
+/* Hero Section */
+.hero-section {
+    position: relative;
+    padding: 100px 20px;
+    min-height: 100vh; /* Full-screen height */
+    background: url('your-image-url-here') center center/cover no-repeat, rgba(0, 0, 0, 0.8); /* Dark background to blend the login box */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff; /* Default text color for hero */
+}
 
+/* Login Box Styling */
+.login-box-centered {
+    width: 400px; /* Slightly larger for better readability */
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.9); /* Deep black semi-transparent background */
+    border-radius: 15px; /* Softer edges for a modern look */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6); /* Deeper shadow to give a floating effect */
+    color: #ffffff;
+    text-align: center;
+    backdrop-filter: blur(5px); /* Subtle blurred background effect */
+}
+
+.login-box-centered h2 {
+    margin-bottom: 25px;
+    font-size: 26px; /* More distinguished heading size */
+    color: #ffffff;
+    font-weight: 600; /* Bold heading for contrast */
+}
+
+/* Input Field Styling */
+.input-container {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.input-container label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #ffffff; /* Consistent bright label for better readability */
+}
+
+.input-container input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Light border to add distinction */
+    border-radius: 8px;
+    outline: none;
+    background: #222; /* Dark input background to blend in but still stand out */
+    color: #ffffff;
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+.input-container input:focus {
+    background: #333; /* Slightly brighter when focused */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Subtle glow to indicate focus */
+}
+
+/* Remember Me Styling */
+.remember-me {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #cccccc; /* Lighter gray for a softer look */
+}
+
+.remember-me input {
+    margin-right: 10px;
+}
+
+/* Forgot Password and Submit Button */
+.actions {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.forgot-password {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #bbbbbb;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+    color: #ffffff; /* Change to bright white on hover */
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 12px 0;
+    background: #000; /* Solid black for a striking contrast */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s;
+    font-size: 18px;
+    font-weight: bold; /* Emphasize the action button */
+}
+
+.submit-btn:hover {
+    background: #222; /* Slightly lighter black to create a subtle effect */
+    transform: scale(1.02); /* Slight grow effect on hover for emphasis */
+}
+
+/* Welcome Message for Authenticated Users */
+.hero-content {
+    color: #ffffff;
+    margin: 0 auto;
+    max-width: 600px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7); /* Dark background to match hero section */
+    padding: 30px;
+    border-radius: 10px;
+}
