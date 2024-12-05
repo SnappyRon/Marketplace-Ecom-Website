@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Middleware\IsSeller;
 
 class SellerController extends Controller
 {
@@ -14,7 +15,7 @@ class SellerController extends Controller
     public function __construct()
     {
         // Apply 'auth' and 'is_seller' middleware to seller-specific methods
-        $this->middleware(['auth', 'is_seller'])->only('dashboard');
+        $this->middleware(['auth', IsSeller::class])->only('dashboard');
 
         
         // Apply 'guest' middleware to registration methods
@@ -75,3 +76,4 @@ class SellerController extends Controller
 
     // Additional methods...
 }
+ 

@@ -1,4 +1,3 @@
-
 <?php if (isset($component)) { $__componentOriginal9ac128a9029c0e4701924bd2d73d7f54 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal9ac128a9029c0e4701924bd2d73d7f54 = $attributes; } ?>
 <?php $component = App\View\Components\AppLayout::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -18,42 +17,23 @@
         <p>Hot Deals!</p>
         <div class="pro-container1">
             <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <a href="<?php echo e(route('product.details', $product->id)); ?>" class="pro-link">
-                <div class="pro">
+            <div class="pro">
+                <a href="<?php echo e(route('product.details', $product->id)); ?>" class="pro-link">
                     <img src="<?php echo e(asset('img/' . $product->image)); ?>" alt="<?php echo e($product->name); ?>">
                     <div class="des">
                         <span><?php echo e($product->supplier_name); ?></span>
                         <h5><?php echo e($product->name); ?></h5>
                         <h4>₱<?php echo e(number_format($product->price, 2)); ?></h4>
                     </div>
-                    <form action="<?php echo e(route('cart.add', $product->id)); ?>" method="POST">
-                        <?php echo csrf_field(); ?>
-                        <button type="submit" class="ri-shopping-cart-line cart">+</button>
-                    </form>
-                </div>
-            </a>
+                </a>
+                <form action="<?php echo e(route('cart.add', $product->id)); ?>" method="POST">
+                    <?php echo csrf_field(); ?>
+                    <button type="submit" class="ri-shopping-cart-line cart">+</button>
+                </form>
+            </div>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
     </section>
-
-    <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-    <a href="<?php echo e(route('product.details', $product->id)); ?>" class="pro-link">
-        <div class="pro">
-            <img src="<?php echo e(asset('img/' . $product->image)); ?>" alt="<?php echo e($product->name); ?>">
-            <div class="des">
-                <span><?php echo e($product->seller->store_name ?? 'MindanaoMarket'); ?></span>
-                <h5><?php echo e($product->name); ?></h5>
-                <h4>₱<?php echo e(number_format($product->price, 2)); ?></h4>
-            </div>
-            <!-- Add to Cart Form -->
-            <form action="<?php echo e(route('cart.add', $product->id)); ?>" method="POST">
-                <?php echo csrf_field(); ?>
-                <button type="submit" class="ri-shopping-cart-line cart">+</button>
-            </form>
-        </div>
-    </a>
-<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-  
  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal9ac128a9029c0e4701924bd2d73d7f54)): ?>

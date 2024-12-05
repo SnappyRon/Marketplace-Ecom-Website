@@ -201,10 +201,10 @@ body {
 
 #product1 .pro-container1 {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     padding-top: 20px;
     flex-wrap: wrap;
-    
+    gap: 20px;
     
 }
 
@@ -213,7 +213,8 @@ section#product1 a {
   }
 
 #product1 .pro {
-    width: 23%;
+    position: relative;
+    width: 250px;
     min-width: 250px;
     padding: 10px 12px;
     border: 1px solid #cce7d0;

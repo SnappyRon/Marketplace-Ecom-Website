@@ -39,6 +39,7 @@ class SellerProductController extends Controller
             'description'   => $request->description,
             'price'         => $request->price,
             'image'         => $imageName,
+            'supplier_name' => Auth::user()->name, // Autofill supplier_name with seller's name
         ]);
 
         return redirect()->route('seller.products.index')->with('success', 'Product added successfully.');
