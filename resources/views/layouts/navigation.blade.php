@@ -7,7 +7,7 @@
             <li><a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}">Home</a></li>
             <li><a href="{{ route('shop') }}" class="{{ request()->routeIs('shop') ? 'active' : '' }}">Shop</a></li>
             <li><a href="{{ route('contact') }}" class="{{ request()->routeIs('contact') ? 'active' : '' }}">Contact</a></li>
-            <li><a href="{{ route('seller') }}" class="{{ request()->routeIs('seller') ? 'active' : '' }}">I'm a Seller</a></li>
+            <li><a href="{{ route('seller.dashboard') }}" class="{{ request()->routeIs('seller.dashboard') ? 'active' : '' }}">I'm a Seller</a></li>
             <li><a href="{{ route('cart.index') }}"><i class="ri-shopping-bag-line"></i></a></li>
             @auth
                 <li><a href="{{ route('profile.edit') }}">{{ Auth::user()->name }}</a></li>

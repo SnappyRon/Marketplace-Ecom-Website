@@ -6,49 +6,46 @@
 
     <!-- Hero Section -->
     <section id="hero" style="position: relative; padding: 50px; text-align: center; background-color: #f5f5f5;">
-        @guest
-            <!-- Login Form for Guests -->
-            <div style="max-width: 400px; margin: 0 auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-                <h2>Welcome Back!</h2>
-                <p>Please log in to access your account.</p>
-                <form method="POST" action="{{ route('login') }}">
-                    @csrf
-                    <!-- Email Address -->
-                    <div style="margin-bottom: 15px;">
-                        <label for="email" style="display: block; font-weight: bold; margin-bottom: 5px;">Email</label>
-                        <input id="email" type="email" name="email" required autofocus autocomplete="username" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
-                    </div>
+    @guest
+        <!-- Login Form for Guests -->
+        <div class="login-box">
+            <h2>Login</h2>
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
+                <!-- Email Address -->
+                <div class="input-container">
+                    <label for="email">Email</label>
+                    <input id="email" type="email" name="email" required autofocus autocomplete="username">
+                </div>
 
-                    <!-- Password -->
-                    <div style="margin-bottom: 15px;">
-                        <label for="password" style="display: block; font-weight: bold; margin-bottom: 5px;">Password</label>
-                        <input id="password" type="password" name="password" required autocomplete="current-password" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
-                    </div>
+                <!-- Password -->
+                <div class="input-container">
+                    <label for="password">Password</label>
+                    <input id="password" type="password" name="password" required autocomplete="current-password">
+                </div>
 
-                    <!-- Remember Me -->
-                    <div style="margin-bottom: 15px;">
-                        <label for="remember_me" style="font-size: 14px;">
-                            <input id="remember_me" type="checkbox" name="remember">
-                            Remember Me
-                        </label>
-                    </div>
+                <!-- Remember Me -->
+                <div class="input-container remember-me">
+                    <input id="remember_me" type="checkbox" name="remember">
+                    <label for="remember_me">Remember Me</label>
+                </div>
 
-                    <!-- Forgot Password and Submit -->
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        @if (Route::has('password.request'))
-                            <a href="{{ route('password.request') }}" style="font-size: 14px; color: #555;">Forgot your password?</a>
-                        @endif
-                        <button type="submit" style="padding: 10px 20px; background-color: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer;">
-                            Log In
-                        </button>
-                    </div>
-                </form>
-            </div>
-        @else
-            <!-- Welcome Message for Authenticated Users -->
+                <!-- Forgot Password and Submit -->
+                <div class="actions">
+                    @if (Route::has('password.request'))
+                        <a href="{{ route('password.request') }}" class="forgot-password">Forgot your password?</a>
+                    @endif
+                    <button type="submit" class="submit-btn">Submit</button>
+                </div>
+            </form>
+        </div>
+    @else
+        <!-- Welcome Message for Authenticated Users -->
+        <div class="hero-content">
             <h4>Welcome, {{ auth()->user()->name }}!</h4>
             <p>Explore the latest deals and products just for you.</p>
-        @endguest
+        </div>
+    @endguest
 
         <!-- Promotional Text -->
         <div style="margin-top: 50px;">

@@ -6,6 +6,12 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SellerController;
+use App\Http\Controllers\SellerProductController;
+use App\Http\Middleware\IsSeller;
+use App\Http\Controllers\SellerSalesController;
+
+
 
 // Include authentication routes from Laravel Breeze
 require __DIR__.'/auth.php';
@@ -33,14 +39,49 @@ Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.d
 // Contact page
 Route::view('/contact', 'contact')->name('contact');
 
-// Seller page
-Route::view('/seller', 'seller')->name('seller');
-
 // Profile routes (authenticated users only)
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+// Seller-specific routes
+
+// Route::prefix('seller')->group(function () {
+//     Route::middleware(['auth', IsSeller::class])->group(function () {
+//         Route::get('/', [SellerController::class, 'dashboard'])->name('seller.dashboard');
+//         Route::get('/dashboard', [SellerController::class, 'dashboard'])->name('seller.dashboard');
+//         Route::resource('/products', SellerProductController::class);
+//     });
+
+//     Route::get('/register', [SellerController::class, 'showRegistrationForm'])->name('seller.register');
+//     Route::post('/register', [SellerController::class, 'register'])->name('seller.register.submit');
+// });
 
 
+
+Route::get('/test-middleware', function () {
+    return 'Middleware test passed.';
+})->middleware([IsSeller::class]);
+
+Route::get('/debug-middleware', function () {
+    return response()->json(app('router')->getMiddleware());
+});
+
+
+
+
+
+Route::prefix('seller')->middleware(['auth', IsSeller::class])->group(function () {
+    Route::get('/dashboard', [SellerController::class, 'dashboard'])->name('seller.dashboard');
+});
+
+Route::prefix('seller')->middleware(['auth', \App\Http\Middleware\IsSeller::class])->group(function () {
+    Route::resource('products', SellerProductController::class, [
+        'as' => 'seller', // Adds 'seller.' prefix to route names
+    ]);
+});
+
+Route::prefix('seller')->middleware(['auth', \App\Http\Middleware\IsSeller::class])->group(function () {
+    Route::get('sales', [SellerSalesController::class, 'index'])->name('seller.sales');
+});
