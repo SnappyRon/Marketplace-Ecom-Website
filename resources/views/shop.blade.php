@@ -26,4 +26,23 @@
             @endforeach
         </div>
     </section>
+
+    @foreach ($products as $product)
+    <a href="{{ route('product.details', $product->id) }}" class="pro-link">
+        <div class="pro">
+            <img src="{{ asset('img/' . $product->image) }}" alt="{{ $product->name }}">
+            <div class="des">
+                <span>{{ $product->seller->store_name ?? 'MindanaoMarket' }}</span>
+                <h5>{{ $product->name }}</h5>
+                <h4>₱{{ number_format($product->price, 2) }}</h4>
+            </div>
+            <!-- Add to Cart Form -->
+            <form action="{{ route('cart.add', $product->id) }}" method="POST">
+                @csrf
+                <button type="submit" class="ri-shopping-cart-line cart">+</button>
+            </form>
+        </div>
+    </a>
+@endforeach
+  
 </x-app-layout>
