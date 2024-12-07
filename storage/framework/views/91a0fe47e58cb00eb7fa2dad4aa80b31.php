@@ -59,10 +59,7 @@
 
             <div class="cart-total">
                 <h3>Total: ₱<?php echo e(number_format($total, 2)); ?></h3>
-                <form action="<?php echo e(route('cart.checkout')); ?>" method="POST">
-                    <?php echo csrf_field(); ?>
-                    <button type="submit" class="checkout-btn">Checkout</button>
-                </form>
+                <a href="<?php echo e(route('cart.checkout.form')); ?>" class="checkout-btn">Checkout</a>
             </div>
         <?php endif; ?>
     </section>
