@@ -50,10 +50,7 @@
 
             <div class="cart-total">
                 <h3>Total: ₱{{ number_format($total, 2) }}</h3>
-                <form action="{{ route('cart.checkout') }}" method="POST">
-                    @csrf
-                    <button type="submit" class="checkout-btn">Checkout</button>
-                </form>
+                <a href="{{ route('cart.checkout.form') }}" class="checkout-btn">Checkout</a>
             </div>
         @endif
     </section>

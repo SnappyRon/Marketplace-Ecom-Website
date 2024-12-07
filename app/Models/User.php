@@ -54,6 +54,17 @@ class User extends Authenticatable
         return $this->hasMany(Product::class, 'seller_id');
     }
 
+    public function ordersAsBuyer()
+    {
+        return $this->hasMany(Order::class, 'user_id');
+    }
+
+    public function ordersAsSeller()
+    {
+        return $this->hasMany(Order::class, 'seller_id');
+    }
+
+
     
 
 }

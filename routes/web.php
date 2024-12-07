@@ -28,11 +28,19 @@ Route::post('/cart/add/{productId}', [CartController::class, 'add'])->name('cart
 Route::post('/cart/update/{cartItemId}', [CartController::class, 'update'])->name('cart.update');
 Route::post('/cart/remove/{cartItemId}', [CartController::class, 'remove'])->name('cart.remove');
 
+// **New Route Added Below: Show Checkout Form**
+Route::get('/cart/checkout', [CartController::class, 'showCheckoutForm'])
+    ->middleware('auth')
+    ->name('cart.checkout.form');
+// **End of New Route**
+
+
 // Checkout route (requires user to be authenticated)
 Route::post('/cart/checkout', [CartController::class, 'checkout'])
     ->middleware('auth')
     ->name('cart.checkout');
 
+    
 // Product details route
 Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.details');
 
@@ -84,4 +92,16 @@ Route::prefix('seller')->middleware(['auth', \App\Http\Middleware\IsSeller::clas
 
 Route::prefix('seller')->middleware(['auth', \App\Http\Middleware\IsSeller::class])->group(function () {
     Route::get('sales', [SellerSalesController::class, 'index'])->name('seller.sales');
+});
+
+
+
+Route::prefix('seller')->middleware(['auth', \App\Http\Middleware\IsSeller::class])->group(function () {
+    // ... existing routes
+    Route::get('sales/{order}', [SellerSalesController::class, 'show'])->name('seller.sales.show');
+});
+
+Route::prefix('seller')->middleware(['auth', \App\Http\Middleware\IsSeller::class])->group(function () {
+    // ... existing routes
+    Route::put('sales/{order}/status', [SellerSalesController::class, 'updateStatus'])->name('seller.sales.updateStatus');
 });
