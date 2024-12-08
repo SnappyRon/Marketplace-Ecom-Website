@@ -15,4 +15,9 @@ class ProductController extends Controller
         $product = Product::findOrFail($id); // Fetch product by ID
         return view('product.details', compact('product')); // Pass product to the view
     }
+    public function index()
+{
+    $products = Product::all(); // Fetch all products
+    return view('shop', compact('products'));
+}
 }

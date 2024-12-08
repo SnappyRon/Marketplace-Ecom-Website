@@ -22,6 +22,8 @@ class User extends Authenticatable
         'email',
         'password',
         'is_active', // Added 'is_active' here
+        'role', // New field for user role
+        'store_name', // New field for seller store name
     ];
 
     /**
@@ -47,4 +49,22 @@ class User extends Authenticatable
             'is_active' => 'boolean', // Added 'is_active' casting here
         ];
     }
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'seller_id');
+    }
+
+    public function ordersAsBuyer()
+    {
+        return $this->hasMany(Order::class, 'user_id');
+    }
+
+    public function ordersAsSeller()
+    {
+        return $this->hasMany(Order::class, 'seller_id');
+    }
+
+
+    
+
 }
