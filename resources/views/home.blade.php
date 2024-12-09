@@ -8,37 +8,7 @@
     <section id="hero" style="position: relative; padding: 50px; text-align: center; background-color: #f5f5f5;">
     @guest
         <!-- Login Form for Guests -->
-        <div class="login-box">
-            <h2>Login</h2>
-            <form method="POST" action="{{ route('login') }}">
-                @csrf
-                <!-- Email Address -->
-                <div class="input-container">
-                    <label for="email">Email</label>
-                    <input id="email" type="email" name="email" required autofocus autocomplete="username">
-                </div>
 
-                <!-- Password -->
-                <div class="input-container">
-                    <label for="password">Password</label>
-                    <input id="password" type="password" name="password" required autocomplete="current-password">
-                </div>
-
-                <!-- Remember Me -->
-                <div class="input-container remember-me">
-                    <input id="remember_me" type="checkbox" name="remember">
-                    <label for="remember_me">Remember Me</label>
-                </div>
-
-                <!-- Forgot Password and Submit -->
-                <div class="actions">
-                    @if (Route::has('password.request'))
-                        <a href="{{ route('password.request') }}" class="forgot-password">Forgot your password?</a>
-                    @endif
-                    <button type="submit" class="submit-btn">Submit</button>
-                </div>
-            </form>
-        </div>
     @else
         <!-- Welcome Message for Authenticated Users -->
         <div class="hero-content">

@@ -3,14 +3,12 @@
     <div class="footer-top">
         <div class="container">
             <div class="footer-content">
-                <!-- About Us Section -->
-                <div class="footer-about">
+                <div class="footer-section footer-about">
                     <h3>About MindanaoMarket</h3>
                     <p>MindanaoMarket is your trusted marketplace for locally sourced products. Shop, sell, and support local businesses across Mindanao!</p>
                 </div>
 
-                <!-- Quick Links -->
-                <div class="footer-links">
+                <div class="footer-section footer-links">
                     <h3>Quick Links</h3>
                     <ul>
                         <li><a href="{{ url('/') }}">Home</a></li>
@@ -21,16 +19,14 @@
                     </ul>
                 </div>
 
-                <!-- Contact Information -->
-                <div class="footer-contact">
+                <div class="footer-section footer-contact">
                     <h3>Contact Us</h3>
                     <p><i class="ri-map-pin-line"></i> Address: Mindanao, Philippines</p>
                     <p><i class="ri-phone-line"></i> Phone: +63 123 456 7890</p>
                     <p><i class="ri-mail-line"></i> Email: <a href="mailto:support@mindanaomarket.com">support@mindanaomarket.com</a></p>
                 </div>
 
-                <!-- Social Media Links -->
-                <div class="footer-social">
+                <div class="footer-section footer-social">
                     <h3>Follow Us</h3>
                     <div class="social-icons">
                         <a href="#" target="_blank"><i class="ri-facebook-circle-line"></i></a>

@@ -184,7 +184,10 @@ body {
 }
 
 #product1 {
-    text-align: center;
+    max-width: 1400px; /* Restrict overall width */
+    margin: 0 auto; /* Center the section horizontally */
+    padding: 0 15px; /* Add padding for smaller screens */
+    box-sizing: border-box;
 }
 
 #product1 .pro-container {
@@ -200,12 +203,11 @@ body {
 
 
 #product1 .pro-container1 {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Ensures 5 items per row */
+    gap: 15px; /* Space between items */
     padding-top: 20px;
-    flex-wrap: wrap;
-    gap: 20px;
-    
+    box-sizing: border-box;
 }
 
 section#product1 a {
@@ -238,8 +240,9 @@ section#product1 a {
 
 
 #product1 .pro img {
-    width: 100%;
-    border-radius: 20px;
+    max-width: 100%; /* Ensures images are responsive */
+    height: auto; /* Keeps the aspect ratio of images */
+    border-radius: 8px; /* Optional: Adds rounded corners */
 }
 
 #product1 .pro .des {
@@ -362,16 +365,78 @@ section#product1 a {
 
 /* Footer */
 .footer {
-    text-align: center;
-    padding: 20px;
-    background: #222;
+    background-color: #222;
+    color: #fff;
+    font-size: 14px;
+    padding: 20px 0;
+}
+
+.footer-top {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Align items horizontally */
+    gap: 20px;
+    text-align: center; /* Align text content */
+}
+
+.footer-section {
+    flex: 1 1 calc(25% - 20px);
+    min-width: 200px;
+}
+
+.footer-section h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #f1f1f1;
+}
+
+.footer-section p, .footer-section a {
+    color: #ccc;
+    text-decoration: none;
+}
+
+.footer-section a:hover {
     color: #fff;
 }
 
-.footer h2 {
-    font-size: 18px;
-    margin: 0;
+.footer-links ul {
+    list-style: none;
+    padding: 0;
 }
+
+.footer-links li {
+    margin-bottom: 5px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center; /* Center social icons */
+}
+
+.social-icons a {
+    color: #ccc;
+    font-size: 20px;
+    margin-right: 10px;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #fff;
+}
+
+.footer-bottom {
+    text-align: center; /* Align text at the bottom */
+    padding: 10px 0;
+    font-size: 12px;
+    color: #ccc;
+    background: #111;
+}
+
 .cart-section {
     padding: 2rem;
 }
@@ -483,8 +548,9 @@ section#product1 a {
 
 
 .pro {
-    cursor: pointer; /* Change cursor to pointer on hover */
-    transition: transform 0.3s ease; /* Optional: Add hover effect */
+    flex: 1 1 calc(20% - 20px); /* 20% width minus gap for 5 items per row */
+    box-sizing: border-box; /* Include padding and border in width calculation */
+    max-width: calc(20% - 20px); /* Prevent items from stretching too wide */
 }
 
 .pro:hover {
@@ -733,7 +799,7 @@ section#product1 a {
 /* Welcome Message for Authenticated Users */
 .hero-content {
     color: #ffffff;
-    margin: 0 auto;
+    margin: 50;
     max-width: 600px;
     text-align: center;
     background: rgba(0, 0, 0, 0.7); /* Dark background to match hero section */

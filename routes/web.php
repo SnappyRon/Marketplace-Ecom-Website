@@ -55,16 +55,16 @@ Route::middleware('auth')->group(function () {
 });
 // Seller-specific routes
 
-// Route::prefix('seller')->group(function () {
-//     Route::middleware(['auth', IsSeller::class])->group(function () {
-//         Route::get('/', [SellerController::class, 'dashboard'])->name('seller.dashboard');
-//         Route::get('/dashboard', [SellerController::class, 'dashboard'])->name('seller.dashboard');
-//         Route::resource('/products', SellerProductController::class);
-//     });
+Route::prefix('seller')->group(function () {
+    // Route::middleware(['auth', IsSeller::class])->group(function () {
+    //     Route::get('/', [SellerController::class, 'dashboard'])->name('seller.dashboard');
+    //     Route::get('/dashboard', [SellerController::class, 'dashboard'])->name('seller.dashboard');
+    //     Route::resource('/products', SellerProductController::class);
+    // });
 
-//     Route::get('/register', [SellerController::class, 'showRegistrationForm'])->name('seller.register');
-//     Route::post('/register', [SellerController::class, 'register'])->name('seller.register.submit');
-// });
+    Route::get('/register', [SellerController::class, 'showRegistrationForm'])->name('seller.register');
+    Route::post('/register', [SellerController::class, 'register'])->name('seller.register.submit');
+});
 
 
 
