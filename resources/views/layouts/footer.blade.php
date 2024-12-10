@@ -1,49 +1,53 @@
-{{-- resources/views/layouts/footer.blade.php --}}
-<footer class="footer">
-    <div class="footer-top">
-        <div class="container">
-            <div class="footer-content">
-                <!-- About Us Section -->
-                <div class="footer-about">
-                    <h3>About MindanaoMarket</h3>
-                    <p>MindanaoMarket is your trusted marketplace for locally sourced products. Shop, sell, and support local businesses across Mindanao!</p>
+<body>
+    <div class="page-container">
+        <!-- Header -->
+        <header>
+            <!-- Add your header content -->
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Add your main content here -->
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-top">
+                <!-- Mailing List Section -->
+                <div class="footer-mailing-list">
+                    <h2>Join Our Tribe</h2>
+                    <p>Subscribe to our mailing list</p>
+                    <form class="footer-form">
+                        <input type="email" placeholder="Email Address" required>
+                        <button type="submit">Sign Up</button>
+                    </form>
                 </div>
 
-                <!-- Quick Links -->
+                <!-- Image Section -->
+                <div class="footer-images">
+                    <img src="{{ asset('img/blog/b1.jpg') }}" alt="Image 1">
+                    <img src="{{ asset('img/blog/b4.jpg') }}" alt="Image 2">
+                    <img src="{{ asset('img/blog/b5.jpg') }}" alt="Image 3">
+                </div>
+
+                <!-- Links Section -->
                 <div class="footer-links">
-                    <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="{{ url('/') }}">Home</a></li>
-                        <li><a href="{{ url('/shop') }}">Shop</a></li>
-                        <li><a href="{{ url('/contact') }}">Contact Us</a></li>
-                        <li><a href="{{ url('/seller') }}">Become a Seller</a></li>
-                        <li><a href="{{ url('/privacy-policy') }}">Privacy Policy</a></li>
+                        <li><a href="#">Shop</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Lookbook</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Paying Methods</a></li>
                     </ul>
                 </div>
-
-                <!-- Contact Information -->
-                <div class="footer-contact">
-                    <h3>Contact Us</h3>
-                    <p><i class="ri-map-pin-line"></i> Address: Mindanao, Philippines</p>
-                    <p><i class="ri-phone-line"></i> Phone: +63 123 456 7890</p>
-                    <p><i class="ri-mail-line"></i> Email: <a href="mailto:support@mindanaomarket.com">support@mindanaomarket.com</a></p>
-                </div>
-
-                <!-- Social Media Links -->
-                <div class="footer-social">
-                    <h3>Follow Us</h3>
-                    <div class="social-icons">
-                        <a href="#" target="_blank"><i class="ri-facebook-circle-line"></i></a>
-                        <a href="#" target="_blank"><i class="ri-twitter-line"></i></a>
-                        <a href="#" target="_blank"><i class="ri-instagram-line"></i></a>
-                        <a href="#" target="_blank"><i class="ri-youtube-line"></i></a>
-                    </div>
-                </div>
             </div>
-        </div>
-    </div>
 
-    <div class="footer-bottom">
-        <p>&copy; {{ date('Y') }} MindanaoMarket. All rights reserved. | <a href="{{ url('/terms') }}">Terms & Conditions</a> | <a href="{{ url('/privacy-policy') }}">Privacy Policy</a></p>
+            <div class="footer-bottom">
+                <button class="footer-load-more">Load More</button>
+            </div>
+        </footer>
     </div>
-</footer>
+</body>

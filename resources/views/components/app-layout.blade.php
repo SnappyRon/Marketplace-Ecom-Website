@@ -17,6 +17,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Add any additional JS files here -->
+     
 </head>
 <body>
     @include('layouts.navigation')
@@ -27,5 +28,6 @@
     </main>
 
     @include('layouts.footer')
+    
 </body>
 </html>

@@ -1,15 +1,14 @@
-{{-- resources/views/cart/checkout.blade.php --}}
 <x-app-layout>
     <x-slot name="title">
         Checkout
     </x-slot>
 
-    <section class="checkout-section">
-        <h2>Checkout</h2>
+    <section style="padding: 20px; font-family: Arial, sans-serif; background-color: #f4f4f4; color: #333;">
+        <h1 style="text-align: center; font-size: 24px; color: #5e535a;">Checkout</h1>
 
         @if ($errors->any())
-            <div class="error-messages">
-                <ul>
+            <div style="margin-bottom: 20px; padding: 10px; border: 1px solid #e57373; background-color: #ffcdd2; border-radius: 5px;">
+                <ul style="margin: 0; padding: 0; list-style: none; color: #d32f2f;">
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
                     @endforeach
@@ -17,90 +16,99 @@
             </div>
         @endif
 
-        <form action="{{ route('cart.checkout') }}" method="POST">
+        <form action="{{ route('cart.checkout') }}" method="POST" style="display: flex; gap: 20px; margin-top: 20px;">
             @csrf
 
-            <div class="buyer-details">
-                <h3>Shipping Details</h3>
+            <!-- Buyer Details -->
+            <div style="flex: 2; background-color: #ffffff; padding: 20px; border: 1px solid #5e535a; border-radius: 10px;">
+                <h2 style="margin-bottom: 20px; font-size: 18px; color: #5e535a;">Shipping Details</h2>
 
-                <div class="form-group">
-                    <label for="full_name">Full Name:</label>
-                    <input type="text" name="full_name" id="full_name" value="{{ old('full_name') }}" required>
+                <div style="margin-bottom: 15px;">
+                    <label for="full_name" style="display: block; margin-bottom: 5px; color: #5e535a;">Full Name:</label>
+                    <input type="text" name="full_name" id="full_name" value="{{ old('full_name') }}" required
+                           style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
                 </div>
 
-                <div class="form-group">
-                    <label for="phone_number">Phone Number:</label>
-                    <input type="tel" name="phone_number" id="phone_number" value="{{ old('phone_number') }}" required>
+                <div style="margin-bottom: 15px;">
+                    <label for="phone_number" style="display: block; margin-bottom: 5px; color: #5e535a;">Phone Number:</label>
+                    <input type="tel" name="phone_number" id="phone_number" value="{{ old('phone_number') }}" required
+                           style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
                 </div>
 
-                <div class="form-group">
-                    <label for="email">Email Address:</label>
-                    <input type="email" name="email" id="email" value="{{ old('email') }}" required>
+                <div style="margin-bottom: 15px;">
+                    <label for="email" style="display: block; margin-bottom: 5px; color: #5e535a;">Email Address:</label>
+                    <input type="email" name="email" id="email" value="{{ old('email') }}" required
+                           style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
                 </div>
 
-                <div class="form-group">
-                    <label for="shipping_address">Shipping Address:</label>
-                    <textarea name="shipping_address" id="shipping_address" rows="3" required>{{ old('shipping_address') }}</textarea>
+                <div style="margin-bottom: 15px;">
+                    <label for="shipping_address" style="display: block; margin-bottom: 5px; color: #5e535a;">Shipping Address:</label>
+                    <textarea name="shipping_address" id="shipping_address" rows="3" required
+                              style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">{{ old('shipping_address') }}</textarea>
                 </div>
 
-                <div class="form-group">
-                    <label for="city">City:</label>
-                    <input type="text" name="city" id="city" value="{{ old('city') }}" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="state">State/Province:</label>
-                    <input type="text" name="state" id="state" value="{{ old('state') }}" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="postal_code">Postal Code:</label>
-                    <input type="text" name="postal_code" id="postal_code" value="{{ old('postal_code') }}" required>
+                <div style="margin-bottom: 15px;">
+                    <label for="city" style="display: block; margin-bottom: 5px; color: #5e535a;">City:</label>
+                    <input type="text" name="city" id="city" value="{{ old('city') }}" required
+                           style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
                 </div>
 
                 <div class="form-group">
                     <label for="country">Country:</label>
                     <select name="country" id="country" required>
-                        <option value="" disabled selected>Select your country</option>
-                        <option value="USA" {{ old('country') == 'USA' ? 'selected' : '' }}>United States</option>
-                        <option value="Canada" {{ old('country') == 'Canada' ? 'selected' : '' }}>Canada</option>
-                        <option value="UK" {{ old('country') == 'UK' ? 'selected' : '' }}>United Kingdom</option>
-                        <!-- Add more countries as needed -->
+                        <option value="Philippines" {{ old('country') == 'Philippines' ? 'selected' : '' }}>Philippines</option>
                     </select>
+                </div>
+
+                <div style="margin-bottom: 15px;">
+                    <label for="state" style="display: block; margin-bottom: 5px; color: #5e535a;">State/Province:</label>
+                    <input type="text" name="state" id="state" value="{{ old('state') }}" required
+                           style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                </div>
+
+                <div style="margin-bottom: 15px;">
+                    <label for="postal_code" style="display: block; margin-bottom: 5px; color: #5e535a;">Postal Code:</label>
+                    <input type="text" name="postal_code" id="postal_code" value="{{ old('postal_code') }}" required
+                           style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
                 </div>
             </div>
 
-            <div class="cart-summary">
-                <h3>Order Summary</h3>
-                <table class="cart-table">
+            <!-- Order Summary -->
+            <div style="flex: 1; background-color: #ffffff; padding: 20px; border: 1px solid #5e535a; border-radius: 10px;">
+                <h2 style="margin-bottom: 20px; font-size: 18px; color: #5e535a;">Order Summary</h2>
+
+                <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
                     <thead>
-                        <tr>
-                            <th>Product</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Total</th>
+                        <tr style="background-color: #5e535a; color: #ffffff;">
+                            <th style="padding: 10px; text-align: left;">Product</th>
+                            <th style="padding: 10px; text-align: center;">Price</th>
+                            <th style="padding: 10px; text-align: center;">Quantity</th>
+                            <th style="padding: 10px; text-align: right;">Total</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($cartItems as $id => $item)
-                            <tr>
-                                <td>{{ $item['name'] }}</td>
-                                <td>₱{{ number_format($item['price'], 2) }}</td>
-                                <td>{{ $item['quantity'] }}</td>
-                                <td>₱{{ number_format($item['price'] * $item['quantity'], 2) }}</td>
+                            <tr style="border-bottom: 1px solid #ddd;">
+                                <td style="padding: 10px; text-align: left;">{{ $item['name'] }}</td>
+                                <td style="padding: 10px; text-align: center;">₱{{ number_format($item['price'], 2) }}</td>
+                                <td style="padding: 10px; text-align: center;">{{ $item['quantity'] }}</td>
+                                <td style="padding: 10px; text-align: right;">₱{{ number_format($item['price'] * $item['quantity'], 2) }}</td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
 
-                <h3>Total: ₱{{ number_format($total, 2) }}</h3>
-            </div>
+                <h3 style="text-align: right; font-size: 18px; color: #5e535a;">Total: ₱{{ number_format($total, 2) }}</h3>
 
-            <div class="payment-method">
-                <h3>Payment Method</h3>
-                <!-- Implement payment gateway integration here -->
-                <p>Payment processing is under development.</p>
-                <button type="submit" class="checkout-btn">Place Order</button>
+                <h2 style="margin: 20px 0; font-size: 16px; color: #5e535a;">Payment Methods</h2>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <p style="margin: 0; color: #5e535a; font-weight: bold;">Payment Options:</p>
+                    <img src="{{ asset('img/pay/pay.png') }}" alt="Payment Methods" style="max-height: 25px; width: auto;">
+                </div>
+
+                <button type="submit" style="display: block; width: 100%; background-color: #5e535a; color: #ffffff; padding: 10px; border: none; border-radius: 5px; margin-top: 20px; cursor: pointer;">
+                    Place Order
+                </button>
             </div>
         </form>
     </section>
