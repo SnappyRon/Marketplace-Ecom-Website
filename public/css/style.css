@@ -184,7 +184,10 @@ body {
 }
 
 #product1 {
-    text-align: center;
+    max-width: 1400px; /* Restrict overall width */
+    margin: 0 auto; /* Center the section horizontally */
+    padding: 0 15px; /* Add padding for smaller screens */
+    box-sizing: border-box;
 }
 
 #product1 .pro-container {
@@ -200,12 +203,11 @@ body {
 
 
 #product1 .pro-container1 {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Ensures 5 items per row */
+    gap: 15px; /* Space between items */
     padding-top: 20px;
-    flex-wrap: wrap;
-    
-    
+    box-sizing: border-box;
 }
 
 section#product1 a {
@@ -213,7 +215,8 @@ section#product1 a {
   }
 
 #product1 .pro {
-    width: 23%;
+    position: relative;
+    width: 250px;
     min-width: 250px;
     padding: 10px 12px;
     border: 1px solid #cce7d0;
@@ -237,8 +240,9 @@ section#product1 a {
 
 
 #product1 .pro img {
-    width: 100%;
-    border-radius: 20px;
+    max-width: 100%; /* Ensures images are responsive */
+    height: auto; /* Keeps the aspect ratio of images */
+    border-radius: 8px; /* Optional: Adds rounded corners */
 }
 
 #product1 .pro .des {
@@ -361,16 +365,78 @@ section#product1 a {
 
 /* Footer */
 .footer {
-    text-align: center;
-    padding: 20px;
-    background: #222;
+    background-color: #222;
+    color: #fff;
+    font-size: 14px;
+    padding: 20px 0;
+}
+
+.footer-top {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Align items horizontally */
+    gap: 20px;
+    text-align: center; /* Align text content */
+}
+
+.footer-section {
+    flex: 1 1 calc(25% - 20px);
+    min-width: 200px;
+}
+
+.footer-section h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #f1f1f1;
+}
+
+.footer-section p, .footer-section a {
+    color: #ccc;
+    text-decoration: none;
+}
+
+.footer-section a:hover {
     color: #fff;
 }
 
-.footer h2 {
-    font-size: 18px;
-    margin: 0;
+.footer-links ul {
+    list-style: none;
+    padding: 0;
 }
+
+.footer-links li {
+    margin-bottom: 5px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center; /* Center social icons */
+}
+
+.social-icons a {
+    color: #ccc;
+    font-size: 20px;
+    margin-right: 10px;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #fff;
+}
+
+.footer-bottom {
+    text-align: center; /* Align text at the bottom */
+    padding: 10px 0;
+    font-size: 12px;
+    color: #ccc;
+    background: #111;
+}
+
 .cart-section {
     padding: 2rem;
 }
@@ -482,8 +548,9 @@ section#product1 a {
 
 
 .pro {
-    cursor: pointer; /* Change cursor to pointer on hover */
-    transition: transform 0.3s ease; /* Optional: Add hover effect */
+    flex: 1 1 calc(20% - 20px); /* 20% width minus gap for 5 items per row */
+    box-sizing: border-box; /* Include padding and border in width calculation */
+    max-width: calc(20% - 20px); /* Prevent items from stretching too wide */
 }
 
 .pro:hover {
@@ -606,3 +673,136 @@ section#product1 a {
     color: white;
 }
 
+.checkout-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.checkout-btn:hover {
+    background-color: #218838;
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    padding: 100px 20px;
+    min-height: 100vh; /* Full-screen height */
+    background: url('your-image-url-here') center center/cover no-repeat, rgba(0, 0, 0, 0.8); /* Dark background to blend the login box */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff; /* Default text color for hero */
+}
+
+/* Login Box Styling */
+.login-box-centered {
+    width: 400px; /* Slightly larger for better readability */
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.9); /* Deep black semi-transparent background */
+    border-radius: 15px; /* Softer edges for a modern look */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6); /* Deeper shadow to give a floating effect */
+    color: #ffffff;
+    text-align: center;
+    backdrop-filter: blur(5px); /* Subtle blurred background effect */
+}
+
+.login-box-centered h2 {
+    margin-bottom: 25px;
+    font-size: 26px; /* More distinguished heading size */
+    color: #ffffff;
+    font-weight: 600; /* Bold heading for contrast */
+}
+
+/* Input Field Styling */
+.input-container {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.input-container label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #ffffff; /* Consistent bright label for better readability */
+}
+
+.input-container input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Light border to add distinction */
+    border-radius: 8px;
+    outline: none;
+    background: #222; /* Dark input background to blend in but still stand out */
+    color: #ffffff;
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+.input-container input:focus {
+    background: #333; /* Slightly brighter when focused */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Subtle glow to indicate focus */
+}
+
+/* Remember Me Styling */
+.remember-me {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #cccccc; /* Lighter gray for a softer look */
+}
+
+.remember-me input {
+    margin-right: 10px;
+}
+
+/* Forgot Password and Submit Button */
+.actions {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.forgot-password {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #bbbbbb;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+    color: #ffffff; /* Change to bright white on hover */
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 12px 0;
+    background: #000; /* Solid black for a striking contrast */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s;
+    font-size: 18px;
+    font-weight: bold; /* Emphasize the action button */
+}
+
+.submit-btn:hover {
+    background: #222; /* Slightly lighter black to create a subtle effect */
+    transform: scale(1.02); /* Slight grow effect on hover for emphasis */
+}
+
+/* Welcome Message for Authenticated Users */
+.hero-content {
+    color: #ffffff;
+    margin: 50;
+    max-width: 600px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7); /* Dark background to match hero section */
+    padding: 30px;
+    border-radius: 10px;
+}
