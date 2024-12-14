@@ -8,7 +8,7 @@
     <section id="hero" style="position: relative; padding: 50px; text-align: center; background-color: #f5f5f5;">
     @guest
         <!-- Login Form for Guests -->
-
+        
     @else
         <!-- Welcome Message for Authenticated Users -->
         <div class="hero-content">
@@ -23,7 +23,7 @@
             <h2>Super Value Deals</h2>
             <h1>Local Products Only</h1>
             <p>Save more with coupons & up to 70% off!</p>
-            <button onclick="window.location.href='{{ url('shop') }}';" style="padding: 10px 20px; background-color: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            <button onclick="window.location.href='{{ url('shop') }}';" style="padding: 10px 20px; background-color: #5e5359; color: white; border: none; border-radius: 5px; cursor: pointer;">
                 Shop Now
             </button>
         </div>

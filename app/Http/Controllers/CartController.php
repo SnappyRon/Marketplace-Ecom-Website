@@ -92,10 +92,12 @@ class CartController extends Controller
     }
 
     // Checkout the cart
+    // 
+    
     public function checkout(Request $request)
     {
-        // Validate the request
-        $request->validate([
+        // Validate input fields
+        $validated = $request->validate([
             'full_name' => 'required|string|max:255',
             'phone_number' => 'required|string|max:15',
             'email' => 'required|email|max:255',
@@ -106,52 +108,52 @@ class CartController extends Controller
             'country' => 'required|string|max:100',
         ]);
 
-        // Check if the user is authenticated
+        // Check if user is logged in
         if (!Auth::check()) {
             return redirect()->route('login')->with('error', 'You must be logged in to checkout.');
         }
 
-        // Check if the user is active
+        // Fetch user details
         $user = Auth::user();
         if (!$user->is_active) {
             return redirect()->back()->with('error', 'Your account is not active. Please contact support.');
         }
 
-        // Retrieve the cart
+        // Retrieve cart items from the session
         $cartItems = session()->get('cart', []);
-
         if (empty($cartItems)) {
             return redirect()->back()->with('error', 'Your cart is empty.');
         }
 
-        // Begin Transaction
+        // Calculate the total amount
+        $totalAmount = $this->calculateTotal($cartItems);
+
+        // Begin database transaction
         DB::beginTransaction();
 
         try {
-            // For simplicity, assume all products are from the same seller
-            // If multiple sellers are involved, you'd need to create separate orders per seller
+            // Determine seller_id from the first product
+            $firstProductId = array_key_first($cartItems);
+            $firstProduct = Product::findOrFail($firstProductId);
+            $sellerId = $firstProduct->seller_id;
 
-            // Retrieve the first seller_id from cart items
-            $firstProduct = Product::findOrFail(array_key_first($cartItems));
-            $sellerId = $firstProduct->seller_id; // Ensure your Product model has seller_id
-
-            // Create Order
+            // Create the order
             $order = Order::create([
                 'user_id' => $user->id,
                 'seller_id' => $sellerId,
-                'total_amount' => $this->calculateTotal($cartItems),
-                'shipping_address' => $request->shipping_address,
-                'full_name' => $request->full_name,
-                'phone_number' => $request->phone_number,
-                'email' => $request->email,
-                'city' => $request->city,
-                'state' => $request->state,
-                'postal_code' => $request->postal_code,
-                'country' => $request->country,
+                'total_amount' => $totalAmount,
+                'shipping_address' => $validated['shipping_address'],
+                'full_name' => $validated['full_name'],
+                'phone_number' => $validated['phone_number'],
+                'email' => $validated['email'],
+                'city' => $validated['city'],
+                'state' => $validated['state'],
+                'postal_code' => $validated['postal_code'],
+                'country' => $validated['country'],
                 'status' => 'Pending',
             ]);
 
-            // Create Order Items
+            // Create the order items
             foreach ($cartItems as $productId => $item) {
                 $product = Product::findOrFail($productId);
 
@@ -160,38 +162,35 @@ class CartController extends Controller
                     throw new \Exception('All products in the cart must be from the same seller.');
                 }
 
-                OrderItem::create([
-                    'order_id' => $order->id,
+                $order->orderItems()->create([
                     'product_id' => $productId,
                     'quantity' => $item['quantity'],
                     'price' => $item['price'],
                 ]);
 
-                // Optionally, deduct stock
+                // Optionally, reduce product stock
                 // $product->decrement('stock', $item['quantity']);
             }
 
-            // Clear the cart
+            // Clear the cart session
             session()->forget('cart');
 
-            // Commit Transaction
+            // Commit the transaction
             DB::commit();
 
-            // Send Order Confirmation Email to Seller
+            // Notify seller and buyer via email
             Mail::to($order->seller->email)->send(new OrderConfirmation($order));
-
-            // Send Order Confirmation Email to Buyer
             Mail::to($order->buyer->email)->send(new OrderConfirmation($order));
 
             return redirect()->route('home')->with('success', 'Checkout successful! Your order has been placed.');
         } catch (\Exception $e) {
             DB::rollBack();
-            // Log the error for debugging
             \Log::error('Checkout Error: ' . $e->getMessage());
 
             return redirect()->back()->with('error', 'An error occurred during checkout. Please try again.');
         }
     }
+
 
     /**
      * Calculate the total amount for the cart items.

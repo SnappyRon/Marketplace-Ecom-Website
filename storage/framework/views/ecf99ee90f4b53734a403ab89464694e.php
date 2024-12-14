@@ -17,37 +17,7 @@
     <section id="hero" style="position: relative; padding: 50px; text-align: center; background-color: #f5f5f5;">
     <?php if(auth()->guard()->guest()): ?>
         <!-- Login Form for Guests -->
-        <div class="login-box">
-            <h2>Login</h2>
-            <form method="POST" action="<?php echo e(route('login')); ?>">
-                <?php echo csrf_field(); ?>
-                <!-- Email Address -->
-                <div class="input-container">
-                    <label for="email">Email</label>
-                    <input id="email" type="email" name="email" required autofocus autocomplete="username">
-                </div>
-
-                <!-- Password -->
-                <div class="input-container">
-                    <label for="password">Password</label>
-                    <input id="password" type="password" name="password" required autocomplete="current-password">
-                </div>
-
-                <!-- Remember Me -->
-                <div class="input-container remember-me">
-                    <input id="remember_me" type="checkbox" name="remember">
-                    <label for="remember_me">Remember Me</label>
-                </div>
-
-                <!-- Forgot Password and Submit -->
-                <div class="actions">
-                    <?php if(Route::has('password.request')): ?>
-                        <a href="<?php echo e(route('password.request')); ?>" class="forgot-password">Forgot your password?</a>
-                    <?php endif; ?>
-                    <button type="submit" class="submit-btn">Submit</button>
-                </div>
-            </form>
-        </div>
+        
     <?php else: ?>
         <!-- Welcome Message for Authenticated Users -->
         <div class="hero-content">
@@ -62,7 +32,7 @@
             <h2>Super Value Deals</h2>
             <h1>Local Products Only</h1>
             <p>Save more with coupons & up to 70% off!</p>
-            <button onclick="window.location.href='<?php echo e(url('shop')); ?>';" style="padding: 10px 20px; background-color: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            <button onclick="window.location.href='<?php echo e(url('shop')); ?>';" style="padding: 10px 20px; background-color: #5e5359; color: white; border: none; border-radius: 5px; cursor: pointer;">
                 Shop Now
             </button>
         </div>

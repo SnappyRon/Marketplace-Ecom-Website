@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Order;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Middleware\IsSeller;
 
@@ -17,7 +19,6 @@ class SellerController extends Controller
         // Apply 'auth' and 'is_seller' middleware to seller-specific methods
         $this->middleware(['auth', IsSeller::class])->only('dashboard');
 
-        
         // Apply 'guest' middleware to registration methods
         $this->middleware('guest')->only(['showRegistrationForm', 'register']);
     }
@@ -71,9 +72,15 @@ class SellerController extends Controller
      */
     public function dashboard()
     {
-        return view('seller.dashboard');
+        $sellerId = Auth::id();
+
+        // Retrieve orders for the seller with pagination
+        $orders = Order::where('seller_id', $sellerId)
+            ->with('buyer', 'orderItems.product') // Eager load relationships
+            ->orderBy('created_at', 'desc')
+            ->paginate(5); // Paginate with 5 orders per page
+
+        return view('seller.dashboard', compact('orders'));
     }
 
-    // Additional methods...
 }
- 
