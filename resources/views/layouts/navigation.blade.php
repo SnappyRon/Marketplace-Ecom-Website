@@ -35,7 +35,7 @@
                     </a>
                 </li>
             @auth
-                <li><a href="{{ route('profile.edit') }}">{{ Auth::user()->name }}</a></li>
+                <li><a href="{{ route('profile.details') }}">{{ Auth::user()->name }}</a></li>
                 <li>
                     <form action="{{ route('logout') }}" method="POST" style="display:inline;">
                         @csrf

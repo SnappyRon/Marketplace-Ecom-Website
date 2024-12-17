@@ -47,12 +47,15 @@ Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.d
 // Contact page
 Route::view('/contact', 'contact')->name('contact');
 
-// Profile routes (authenticated users only)
+// Route for Profile Details (Main Profile Page)
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile', [ProfileController::class, 'details'])->name('profile.details');
+    Route::get('/profile/details', [ProfileController::class, 'details'])->name('profile.details');
+    Route::get('/profile/orders', [ProfileController::class, 'orders'])->name('profile.orders');
+    Route::put('/orders/{order}/update-status', [ProfileController::class, 'updateOrderStatus'])->name('orders.updateStatus');
+    Route::patch('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 });
+
 // Seller-specific routes
 
 Route::prefix('seller')->group(function () {

@@ -1,4 +1,4 @@
-<section id="header">
+<!-- <section id="header">
     <a href="#"><img src="{{ asset('img/logo3.png') }}" class="logo" alt="Logo"></a>
     <div>
         <ul id="navbar">
@@ -9,4 +9,4 @@
             <li><a href="{{ url('/cart') }}"><i class="ri-shopping-bag-line"></i></a></li>
         </ul>
     </div>
-</section>
+</section> -->
