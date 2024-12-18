@@ -6,10 +6,18 @@
             <li><a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}">Home</a></li>
             <li><a href="{{ route('shop') }}" class="{{ request()->routeIs('shop') ? 'active' : '' }}">Shop</a></li>
             <li><a href="{{ route('contact') }}" class="{{ request()->routeIs('contact') ? 'active' : '' }}">Contact</a></li>
-            <li><a href="{{ route('seller.dashboard') }}" class="{{ request()->routeIs('seller.dashboard') ? 'active' : '' }}">I'm a Seller</a></li>
+            @auth
+                @if (Auth::user()->role === 'seller')
+                    <li>
+                        <a href="{{ route('seller.dashboard') }}" class="{{ request()->routeIs('seller.dashboard') ? 'active' : '' }}">
+                            I'm a Seller
+                        </a>
+                    </li>
+                @endif
+            @endauth
             <li style="position: relative; display: inline-block;">
                     <a href="{{ route('cart.index') }}" style="position: relative; display: inline-block;">
-                        <i class="ri-shopping-bag-line" style="font-size: 24px; position: relative; z-index: 1;"></i>
+                        <i class="ri-shopping-bag-3-fill" style="font-size: 25px; margin-right: -15px; margin-left: -15px; position: relative; z-index: 1;"></i>
                         @php
                             $cartCount = session()->has('cart') ? count(session()->get('cart')) : 0;
                         @endphp
@@ -17,7 +25,7 @@
                             <span style="
                                 position: absolute;
                                 top: -10px; /* Adjusted for higher placement */
-                                right: -7px; /* Slightly closer to the edge */
+                                right: -12px; /* Slightly closer to the edge */
                                 background-color: #dc3545;
                                 color: white;
                                 font-size: 12px;
@@ -35,7 +43,11 @@
                     </a>
                 </li>
             @auth
-                <li><a href="{{ route('profile.details') }}">{{ Auth::user()->name }}</a></li>
+                <li style="display: flex; align-items: center; gap: 5px;">
+                    <a href="{{ route('profile.details') }}" style="font-size: 16px; text-decoration: none; color: inherit;">
+                        {{ Auth::user()->name }}
+                    </a>
+                </li>
                 <li>
                     <form action="{{ route('logout') }}" method="POST" style="display:inline;">
                         @csrf

@@ -16,7 +16,7 @@
                 <!-- Header -->
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                     <div style="font-weight: bold; color: #333;">
-                        📦 {{ $order->store_name }}
+                        📦 Store Name: {{ $order->store_name }}
                     </div>
                     <div style="color: red; font-weight: bold;">
                         {{ strtoupper($order->status) }}
@@ -41,7 +41,7 @@
                             <div style="color: #777; font-size: 14px;">
                             </div>
                             <div style="margin-top: 5px; color: #333;">
-                                x{{ $item->quantity }}
+                                Quantity: x{{ $item->quantity }} 
                             </div>
                         </div>
                         <!-- Item Price -->
